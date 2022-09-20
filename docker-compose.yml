@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+
+  mysql_server:
+    image: mariadb:latest
+    restart: always
+    container_name: dbtask
+    env_file:
+      - api/.env
+    environment:
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=task
+    ports:
+      - '3306:3306'
+    networks:
+      - mynet
+
+  app:
+    build:
+      context: ./api
+    ports:
+      - '8080:8080'
+    networks:
+      - mynet
+    depends_on:
+      - mysql_server
+
+
+  client:
+    build:
+      context: ./client
+    volumes:
+      - ./client:/client
+    ports:
+      - '3000:3000'
+    image: app:react
+    container_name: react_container
+    command: npm start
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: bridge
+

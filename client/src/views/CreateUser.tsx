@@ -1,6 +1,11 @@
+import {Typography, FormControl} from "@mui/material";
+
 const CreateUser = () => {
     return (
-        <h1>Create User</h1>
+        <FormControl>
+            <Typography>Create User</Typography>
+        </FormControl>
+
     )
 }
 
