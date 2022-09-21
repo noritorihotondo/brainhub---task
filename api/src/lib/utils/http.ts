@@ -1,13 +1,13 @@
 import { Response } from 'express';
 import { AnySchema } from 'joi';
-import { HTTPCode, ApiErrorCode } from '../../types';
+import { ApiErrorCode, ApiOkMessage, ApiResult, HTTPCode } from '../../types';
 import Config from '../../lib/utils/config';
 import { APIError } from './api-error';
 
 export function respondSuccess(res: Response, data: unknown, code = HTTPCode.OK) {
   res.setHeader('Content-Type', 'application/json');
 
-  const response = { status: 'ok', data };
+  const response: ApiOkMessage<typeof data> = { result: ApiResult.Ok, payload: data };
   const parsed =
     Config.NODE_ENV === 'development'
       ? JSON.stringify(response, null, 4)

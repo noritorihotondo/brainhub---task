@@ -3,6 +3,7 @@ import { APIError } from '../../lib/utils/api-error';
 import { BaseError } from '../../lib/utils/base-error';
 import { ErrorHandler } from '../../lib/utils/error-handler';
 import { logger } from '../../lib/utils/logger';
+import { ApiErrorMessage, ApiResult } from '../../types';
 
 const errorHandler = new ErrorHandler(logger);
 
@@ -16,8 +17,12 @@ export const errorMiddleware = async (
     next(err);
   }
   const message = err instanceof APIError ? err.message : 'Initial server Error';
-  res
-    .status((<BaseError>err)?.httpCode || 500)
-    .send({ error_code: err.errorCode, message: message, http_code: err.httpCode });
+  const response: ApiErrorMessage = {
+    result: ApiResult.Error,
+    errorCode: err.errorCode,
+    message,
+    httpCode: err.httpCode,
+  };
+  res.status((<BaseError>err)?.httpCode || 500).send(response);
   await errorHandler.handleError(err);
 };

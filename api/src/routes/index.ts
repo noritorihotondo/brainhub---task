@@ -1,3 +1,3 @@
 import users from './users';
-
-export default [...users];
+import events from './events';
+export default [...users, ...events];
