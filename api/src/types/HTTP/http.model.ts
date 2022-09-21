@@ -1,6 +1,8 @@
 export enum ApiErrorCode {
+  OtherError,
   CantFindUser,
-  NoPermisions,
+  NoPermissions,
   BadCredentials,
   UserAlreadyExists,
+  EventAlreadyExists,
 }
