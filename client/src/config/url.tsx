@@ -1,8 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { RouteObject } from 'react-router/dist/lib/context';
-import Home from '../views/Home';
-import CreateEvent from '../views/CreateEvent';
-import CreateUser from '../views/CreateUser';
+import { Home, CreateEvent, CreateUser } from '../views';
 
 export const baseUrl = {
   home: '/home',

@@ -1,12 +1,10 @@
-import {Typography, FormControl} from "@mui/material";
+import React from 'react';
+import { Typography, FormControl } from '@mui/material';
 
-const CreateUser = () => {
-    return (
-        <FormControl>
-            <Typography>Create User</Typography>
-        </FormControl>
-
-    )
-}
-
-export default CreateUser;
+export const CreateUser = () => {
+  return (
+    <FormControl>
+      <Typography>Create User</Typography>
+    </FormControl>
+  );
+};
