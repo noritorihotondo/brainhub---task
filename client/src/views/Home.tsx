@@ -1,14 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
-import { Link, Typography } from '../components';
+import { Link, Typography, MainWrapper } from '../components';
 
-const MainWrapper = styled(Box)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
 const LinksWrapper = styled(Box)`
   display: flex;
   align-items: center;
