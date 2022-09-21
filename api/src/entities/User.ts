@@ -1,20 +1,15 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  BaseEntity,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, ManyToOne } from 'typeorm';
 
-import { UserEntity, UserStatus } from '../types';
+import { UserEntity } from '../types';
+
+import { Event } from './Event';
 
 @Entity()
 export class User extends BaseEntity implements UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 10 })
+  @Column({ length: 30 })
   firstname: string;
 
   @Column({
@@ -23,25 +18,9 @@ export class User extends BaseEntity implements UserEntity {
   })
   email: string;
 
-  @Column({
-    nullable: true,
-    length: 20,
-  })
-  password: string;
-
-  @Column({ length: 10 })
+  @Column({ length: 30 })
   lastname: string;
 
-  @Column({
-    default: UserStatus.Pending,
-    type: 'enum',
-    enum: UserStatus,
-  })
-  status: UserStatus;
-
-  @CreateDateColumn({ default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
-
-  @UpdateDateColumn({ nullable: true })
-  updatedAt: Date;
+  @ManyToOne(() => Event, (event) => event.user)
+  event: Event;
 }
