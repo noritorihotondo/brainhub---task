@@ -1,9 +1,12 @@
-import Joi from 'joi';
+export interface EventFormValues {
+  name: string;
+  date: string; // date string
+}
 
-const nameValidation = Joi.string().alphanum().min(3).max(30).required();
-const dateValidation = Joi.date().required().min('now');
+export interface EventEntity {
+  id: string;
+  name: string;
+  date: string; // date string
+}
 
-export const CreateEventSchema = Joi.object({
-  name: nameValidation,
-  date: dateValidation,
-});
+export type EventState = EventEntity[];
