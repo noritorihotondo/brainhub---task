@@ -1,46 +1,46 @@
-import React, { useState } from 'react';
+import React, { useId } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { InputLabel, MenuItem } from '@mui/material';
 import { ErrorMessage } from '@hookform/error-message';
-import MuiSelect, { SelectChangeEvent } from '@mui/material/Select';
+import MuiSelect from '@mui/material/Select';
 import { DisplayError } from '../ErrorMessage';
-
-type Option = {
-  name: string;
-  value: string;
-};
+import { Option } from '../../../types';
 
 interface Props {
   name: string;
+  options: Option[];
   label?: string;
   placeholder?: string;
   disabled?: boolean;
-  options?: Option[];
 }
 
-export const Select: React.FC<Props> = ({ name, label, disabled = false, placeholder }) => {
+export const Select: React.FC<Props> = ({
+  name,
+  options,
+  label,
+  disabled = false,
+  placeholder,
+}) => {
+  const id = useId();
   const { register, formState } = useFormContext();
-  const [age, setAge] = useState('');
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
 
   return (
     <>
-      <InputLabel id="demo-simple-select-label">{label}</InputLabel>
+      <InputLabel id={`label-${id}`}>{label}</InputLabel>
       <MuiSelect
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
         {...(register && register(name))}
-        value={age}
+        labelId={`label-${id}`}
+        id={id}
         name={name}
-        label="Age"
-        onChange={handleChange}
+        label={label}
+        disabled={disabled}
+        placeholder={placeholder}
       >
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {options.map(({ value, name }) => (
+          <MenuItem key={value} value={value}>
+            {name}
+          </MenuItem>
+        ))}
       </MuiSelect>
       {formState.errors && (
         <ErrorMessage

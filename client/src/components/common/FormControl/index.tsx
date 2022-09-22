@@ -11,16 +11,18 @@ const StyledForm = styled.form`
   flex-direction: column;
 `;
 
-interface Props<FormValues extends object = object> {
+interface Props<FormValues extends object> {
   children: React.ReactNode;
   submitHandler: SubmitHandler<FormValues>;
   validationSchema?: Joi.AnySchema;
 }
 
-type Component<FormValues extends object = object> = React.FC<Props<FormValues>>;
-
-export const FormControl: Component = ({ children, validationSchema, submitHandler }) => {
-  const methods = useForm({
+export const FormControl = <FormValues extends object>({
+  children,
+  validationSchema,
+  submitHandler,
+}: Props<FormValues>) => {
+  const methods = useForm<FormValues>({
     resolver: validationSchema && joiResolver(validationSchema),
   });
   return (

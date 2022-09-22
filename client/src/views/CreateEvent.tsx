@@ -8,13 +8,26 @@ import {
   InputWrapper,
   DateInput,
 } from '../components';
-import { CreateEventSchema } from '../types/Event';
+import { createEventSchema } from '../formValidation';
+import { useApi, useAppDispatch } from '../hooks';
+import { EventFormValues } from '../types';
+import { successNotification } from '../slices';
 
 export const CreateEvent = () => {
+  const api = useApi();
+  const dispatch = useAppDispatch();
+
+  const onSubmit = async (formValues: EventFormValues) => {
+    console.log(formValues);
+    await api.post('/event', formValues, () => {
+      dispatch(successNotification('Event created successfully'));
+    });
+  };
+
   return (
     <MainWrapper>
       <Typography variant="h2" text="Create Event"></Typography>
-      <FormControl submitHandler={(data) => console.log(data)} validationSchema={CreateEventSchema}>
+      <FormControl submitHandler={onSubmit} validationSchema={createEventSchema}>
         <InputWrapper>
           <Input name="name" label="Event Name" placeholder="Birthday" />
           <DateInput name="date" />
