@@ -28,3 +28,7 @@ docker-compose build
 ```bash
 docker-compose up
 ```
+
+## Screenshots
+[First add a event](./images/ex.1.png)
+[Next add a user](./images/ex.2.png)
