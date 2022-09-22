@@ -8,3 +8,5 @@ export * from './Label';
 export * from './InputWrapper';
 export * from './DateInput';
 export * from './ErrorMessage';
+export * from './Notification';
+export * from './Select';

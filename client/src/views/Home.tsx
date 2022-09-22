@@ -11,16 +11,14 @@ const LinksWrapper = styled(Box)`
   gap: 30px;
 `;
 
-export const Home = () => {
-  return (
-    <>
-      <MainWrapper>
-        <Typography variant="h2" text="Home"></Typography>
-        <LinksWrapper>
-          <Link to="/create-user" text="Create User" />
-          <Link to="/create-event" text="Create Event" />
-        </LinksWrapper>
-      </MainWrapper>
-    </>
-  );
-};
+export const Home = () => (
+  <>
+    <MainWrapper>
+      <Typography variant="h2" text="Home"></Typography>
+      <LinksWrapper>
+        <Link to="/create-user" text="Create User" />
+        <Link to="/create-event" text="Create Event" />
+      </LinksWrapper>
+    </MainWrapper>
+  </>
+);
