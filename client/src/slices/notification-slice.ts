@@ -50,5 +50,5 @@ export const notificationSlice = createSlice({
   },
 });
 
-export const { hideNotification, errorNotification, infoNotification, successNotification } =
+export const { hideNotification, errorNotification, successNotification } =
   notificationSlice.actions;

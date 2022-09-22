@@ -18,7 +18,6 @@ export const CreateEvent = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit = async (formValues: EventFormValues) => {
-    console.log(formValues);
     await api.post('/event', formValues, () => {
       dispatch(successNotification('Event created successfully'));
     });
