@@ -1,6 +1,30 @@
-Recruitment Task 
+# Recruitment Task 
+Recruitment task for the Brainhub Company.
 
-1.docker-compose build
-2.docker-compose up
-3.add new event like in example nr 1
-4.add new user like in example nr 2
+## About the App
+The application is created using React, Redux(redux-toolkit), react-hook-from, MUI, Express, MariaDb, Typeorm, Typescript.
+The main goal of this app is to allow a user to add an event to the database, with the
+following fields:
+- First name (required)
+- Last name (required)
+- Email (required, valid email address)
+- Event date (required, simple date picker)
+
+## Prerequisites
+To run the app properly, it needs the following: 
+- [Docker](https://www.docker.com/)
+- [docker-compose](https://docs.docker.com/compose/)
+
+## Usage
+Node is not required because there is a image of it in the docker container, to run application you should:
+
+```bash
+cd ./myproject
+# You have to be in the root directory where the docker-compose.yml is located.
+```
+```bash
+docker-compose build
+```
+```bash
+docker-compose up
+```
