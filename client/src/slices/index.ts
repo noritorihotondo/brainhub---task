@@ -1,1 +1,2 @@
-export * from './user-slice';
+export * from './events-slice';
+export * from './notification-slice';
